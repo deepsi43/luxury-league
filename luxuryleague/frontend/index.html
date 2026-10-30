@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Luxury League</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="tutorial.css">
 </head>
 <body>
   <div class="ambient"></div>
@@ -24,6 +25,7 @@
       <div class="lobby-actions">
         <label>Your display name<input id="playerName" maxlength="20" placeholder="e.g. Alex"></label>
         <button class="primary" id="createBtn">Create private room</button>
+        <button class="secondary tutorial-btn" id="watchTutorialBtn" type="button">Watch Tutorial</button>
         <div class="or">OR JOIN WITH AN INVITE CODE</div>
         <label>Room code<input id="roomCode" maxlength="6" placeholder="ABC123" class="code-input"></label>
         <button class="secondary" id="joinBtn">Join room</button>
@@ -84,7 +86,35 @@
       <button class="secondary" id="backToLobby">Back to room</button>
     </section>
   </main>
+
+  <div id="tutorialModal" class="tutorial-modal hidden" aria-modal="true" role="dialog" aria-labelledby="tutorialTitle">
+    <div class="tutorial-backdrop" id="tutorialBackdrop"></div>
+    <div class="tutorial-shell">
+      <div class="tutorial-header">
+        <div>
+          <div class="eyebrow gold">HOW TO PLAY</div>
+          <h3 id="tutorialTitle">How to Play Luxury League</h3>
+        </div>
+        <button class="tutorial-close" id="closeTutorialBtn" type="button" aria-label="Close tutorial">✕</button>
+      </div>
+
+      <div class="tutorial-video-wrap">
+        <video id="tutorialVideo" preload="metadata" playsinline controls controlsList="nodownload" muted></video>
+        <div id="tutorialPlaceholder" class="tutorial-placeholder hidden">
+          <div class="placeholder-icon">▶</div>
+          <h4>Tutorial video coming soon.</h4>
+        </div>
+      </div>
+
+      <div class="tutorial-meta">
+        <div class="tutorial-chapter-title">Tutorial chapters</div>
+        <div id="tutorialChapters" class="tutorial-chapters"></div>
+      </div>
+    </div>
+  </div>
+
   <footer>Luxury League · A private multiplayer party game · Game points are illustrative</footer>
   <script src="app.js"></script>
+  <script src="tutorial.js"></script>
 </body>
 </html>
