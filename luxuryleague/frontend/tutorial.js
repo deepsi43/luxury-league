@@ -22,12 +22,14 @@ tutorialChapters.innerHTML = chapters
   `)
   .join('');
 
+const luxuryVideoSrc = 'https://videos.pexels.com/video-files/3195394/3195394-hd_1920_1080.mp4';
+
 const openTutorial = () => {
   tutorialModal.classList.remove('hidden');
   document.body.classList.add('modal-open');
 
   if (!tutorialVideo.dataset.loaded) {
-    tutorialVideo.src = 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4';
+    tutorialVideo.src = luxuryVideoSrc;
     tutorialVideo.dataset.loaded = 'true';
   }
 
