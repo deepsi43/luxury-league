@@ -198,11 +198,41 @@ async def join_room(code: str, body: JoinRoom):
     if any(p["name"].lower() == body.player_name.strip().lower() for p in room["players"]):
         raise HTTPException(409, "That player name is already taken in this room.")
     player = new_player(body.player_name)
-    room["players"].append(player)
-    room["recent_event"] = f"{player['name']} joined the room."
-    await broadcast(room["code"])
-    return {"room_code": room["code"], "player_id": player["id"], "player_token": player["token"], "state": private_state(room, player)}
+    
+room["players"].append(player)
+room["recent_event"] = f"{player['name']} joined the room."
 
+if len(room["players"]) == MAX_PLAYERS:
+    deck = []
+    for brand in BRANDS:
+        for copy_number in range(4):
+            deck.append({
+                "instance_id": secrets.token_hex(8),
+                "brand_id": brand["id"]
+            })
+
+    random.SystemRandom().shuffle(deck)
+    room["deck"] = deck
+
+    for p in room["players"]:
+        p["hand"] = [
+            room["deck"].pop()
+            for _ in range(STARTING_HAND)
+        ]
+        auto_match(p)
+
+    room["status"] = "playing"
+    room["active_player_id"] = room["players"][0]["id"]
+    room["recent_event"] = "Four players joined. Game started!"
+
+await broadcast(room["code"])
+
+return {
+    "room_code": room["code"],
+    "player_id": player["id"],
+    "player_token": player["token"],
+    "state": private_state(room, player)
+}
 
 @app.get("/api/rooms/{code}")
 async def get_room(code: str, x_player_token: str = Header(default="")):
