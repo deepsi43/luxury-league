@@ -1,4 +1,4 @@
-const API = "http://127.0.0.1:8000";
+const API = "https://luxury-league-1.onrender.com";
 let roomCode = null, token = null, playerId = null, currentState = null, socket = null;
 const $ = (id) => document.getElementById(id);
 
