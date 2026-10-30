@@ -1,0 +1,345 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
+
+:root {
+  --bg: #0b0b0d;
+  --panel: #151518;
+  --panel2: #1d1d20;
+  --gold: #d5b36a;
+  --gold2: #f1d99b;
+  --muted: #99969a;
+  --line: rgba(255,255,255,0.08);
+  --white: #f7f4ed;
+  --shadow: rgba(0,0,0,0.45);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 50% -20%, #302719 0%, #111012 45%, #09090b 100%);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+button, input {
+  font: inherit;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.hero-copy,
+.hero-visual,
+.lobby-actions {
+  display: flex;
+}
+
+.lobby-panel {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr 0.95fr;
+  gap: 1.5rem;
+  align-items: center;
+  margin: 1.5rem auto 2rem;
+  max-width: 1200px;
+  padding: 1.5rem;
+}
+
+.hero-copy {
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.hero-copy h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 0.96;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+
+.hero-copy h2 em {
+  color: var(--gold2);
+  font-style: italic;
+}
+
+.hero-copy p {
+  margin: 0;
+  color: #d7d3cf;
+  line-height: 1.6;
+  max-width: 32rem;
+}
+
+.eyebrow,
+.preview-label {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--gold2);
+  opacity: 0.95;
+}
+
+.eyebrow.gold,
+.preview-label {
+  color: var(--gold2);
+}
+
+.hero-visual {
+  justify-content: center;
+}
+
+.tutorial-preview-card {
+  width: min(100%, 430px);
+  padding: 1rem;
+  background: rgba(22, 22, 25, 0.8);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 24px 60px var(--shadow);
+}
+
+.preview-label {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.landing-video {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(135deg, rgba(213,179,106,0.22), rgba(18,18,20,0.18));
+}
+
+.preview-tutorial-btn,
+.primary,
+.secondary {
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.preview-tutorial-btn,
+.tutorial-btn {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.primary,
+.secondary,
+.preview-tutorial-btn {
+  padding: 0.9rem 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.primary {
+  background: linear-gradient(180deg, var(--gold2), var(--gold));
+  color: #171511;
+  box-shadow: 0 10px 28px rgba(213,179,106,0.35);
+}
+
+.secondary {
+  background: rgba(255,255,255,0.02);
+  border-color: rgba(255,255,255,0.12);
+  color: var(--white);
+}
+
+.primary:hover,
+.secondary:hover,
+.preview-tutorial-btn:hover,
+.tutorial-close:hover {
+  transform: translateY(-1px);
+}
+
+.lobby-actions {
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1.2rem;
+  background: rgba(12,12,14,0.55);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+}
+
+.lobby-actions label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.lobby-actions input {
+  background: rgba(255,255,255,0.03);
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 0.9rem 0.9rem;
+  min-height: 48px;
+  outline: none;
+}
+
+.lobby-actions input:focus {
+  border-color: rgba(213,179,106,0.7);
+  box-shadow: 0 0 0 3px rgba(213,179,106,0.12);
+}
+
+.or {
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.tutorial-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+}
+
+.tutorial-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(7,7,10,0.72);
+  backdrop-filter: blur(12px);
+}
+
+.tutorial-shell {
+  position: relative;
+  width: min(900px, 100%);
+  background: linear-gradient(180deg, #1a1a1e, #131316);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  padding: 1.25rem;
+}
+
+.tutorial-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tutorial-header h3 {
+  margin: 0.2rem 0 0;
+  font-size: clamp(1.6rem, 2vw, 2.4rem);
+  font-family: 'Playfair Display', serif;
+}
+
+.tutorial-close {
+  appearance: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.03);
+  color: var(--white);
+  cursor: pointer;
+}
+
+.tutorial-video-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #0f0f12;
+  border: 1px solid rgba(255,255,255,0.08);
+  aspect-ratio: 16 / 9;
+}
+
+.tutorial-video-wrap video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: linear-gradient(135deg, #2d2116, #09090b 60%);
+}
+
+.tutorial-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(213,179,106,0.15), rgba(17,16,18,0.75));
+  text-align: center;
+}
+
+.placeholder-icon {
+  width: 68px;
+  height: 68px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.14);
+  font-size: 2rem;
+  margin: 0 auto 0.8rem;
+}
+
+.tutorial-meta {
+  margin-top: 1.25rem;
+}
+
+.tutorial-chapter-title {
+  color: var(--gold2);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  margin-bottom: 0.8rem;
+}
+
+.tutorial-chapters {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.chapter-item {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.02);
+  padding: 0.9rem 1rem;
+}
+
+.chapter-item strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.chapter-item span {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+@media (max-width: 980px) {
+  .lobby-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-copy,
+  .hero-visual,
+  .lobby-actions {
+    width: 100%;
+  }
+}
