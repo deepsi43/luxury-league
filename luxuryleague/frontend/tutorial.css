@@ -6,10 +6,14 @@
   --panel2: #1d1d20;
   --gold: #d5b36a;
   --gold2: #f1d99b;
-  --muted: #99969a;
+  --champagne: #f8f2dc;
+  --muted: #b9b0a0;
   --line: rgba(255,255,255,0.08);
+  --line-strong: rgba(213,179,106,0.35);
   --white: #f7f4ed;
-  --shadow: rgba(0,0,0,0.45);
+  --shadow: rgba(0,0,0,0.52);
+  --luxury-top: #1c1a1d;
+  --luxury-bottom: #0f0f12;
 }
 
 * { box-sizing: border-box; }
@@ -22,23 +26,15 @@ body {
   font-family: 'DM Sans', sans-serif;
 }
 
-body.modal-open {
-  overflow: hidden;
-}
+body.modal-open { overflow: hidden; }
 
-button, input {
-  font: inherit;
-}
+button, input { font: inherit; }
 
-.hidden {
-  display: none !important;
-}
+.hidden { display: none !important; }
 
 .hero-copy,
 .hero-visual,
-.lobby-actions {
-  display: flex;
-}
+.lobby-actions { display: flex; }
 
 .lobby-panel {
   display: grid;
@@ -87,21 +83,17 @@ button, input {
 }
 
 .eyebrow.gold,
-.preview-label {
-  color: var(--gold2);
-}
+.preview-label { color: var(--gold2); }
 
-.hero-visual {
-  justify-content: center;
-}
+.hero-visual { justify-content: center; }
 
 .tutorial-preview-card {
   width: min(100%, 430px);
   padding: 1rem;
-  background: rgba(22, 22, 25, 0.8);
-  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(24,21,18,0.9), rgba(17,17,20,0.92));
+  border: 1px solid var(--line-strong);
   border-radius: 22px;
-  box-shadow: 0 24px 60px var(--shadow);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
 .preview-label {
@@ -125,7 +117,7 @@ button, input {
   border-radius: 999px;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
 }
 
 .preview-tutorial-btn,
@@ -166,9 +158,10 @@ button, input {
   flex-direction: column;
   gap: 0.9rem;
   padding: 1.2rem;
-  background: rgba(12,12,14,0.55);
+  background: rgba(12,12,14,0.62);
   border: 1px solid var(--line);
   border-radius: 24px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
 }
 
 .lobby-actions label {
@@ -222,21 +215,32 @@ button, input {
 .tutorial-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(7,7,10,0.72);
-  backdrop-filter: blur(12px);
+  background: rgba(7,7,10,0.78);
+  backdrop-filter: blur(14px);
 }
 
 .tutorial-shell {
   position: relative;
   width: min(900px, 100%);
-  background: linear-gradient(180deg, #1a1a1e, #131316);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 24px;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
-  padding: 1.25rem;
+  background: linear-gradient(145deg, rgba(24,22,25,0.98), rgba(13,13,15,0.96));
+  border: 1px solid rgba(213,179,106,0.22);
+  border-radius: 26px;
+  box-shadow: 0 30px 90px rgba(0,0,0,0.62), inset 0 1px 0 rgba(255,255,255,0.10);
+  padding: 1.35rem;
+  overflow: hidden;
+}
+
+.tutorial-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(213,179,106,0.08), transparent 22%, transparent 78%, rgba(213,179,106,0.08));
+  pointer-events: none;
 }
 
 .tutorial-header {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -246,27 +250,31 @@ button, input {
 
 .tutorial-header h3 {
   margin: 0.2rem 0 0;
-  font-size: clamp(1.6rem, 2vw, 2.4rem);
+  font-size: clamp(1.8rem, 2vw, 2.7rem);
   font-family: 'Playfair Display', serif;
+  letter-spacing: -0.04em;
 }
 
 .tutorial-close {
   appearance: none;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.7rem;
+  height: 2.7rem;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(213,179,106,0.35);
+  background: rgba(255,255,255,0.02);
   color: var(--white);
   cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
 .tutorial-video-wrap {
   position: relative;
+  z-index: 1;
   overflow: hidden;
   border-radius: 18px;
-  background: #0f0f12;
-  border: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(135deg, #1a140d, #09090b 60%);
+  border: 1px solid rgba(213,179,106,0.22);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 18px 38px rgba(0,0,0,0.38);
   aspect-ratio: 16 / 9;
 }
 
@@ -283,7 +291,7 @@ button, input {
   inset: 0;
   display: grid;
   place-items: center;
-  background: linear-gradient(135deg, rgba(213,179,106,0.15), rgba(17,16,18,0.75));
+  background: linear-gradient(135deg, rgba(213,179,106,0.20), rgba(17,16,18,0.82));
   text-align: center;
 }
 
@@ -296,9 +304,12 @@ button, input {
   border: 1px solid rgba(255,255,255,0.14);
   font-size: 2rem;
   margin: 0 auto 0.8rem;
+  box-shadow: 0 0 24px rgba(213,179,106,0.16);
 }
 
 .tutorial-meta {
+  position: relative;
+  z-index: 1;
   margin-top: 1.25rem;
 }
 
@@ -316,18 +327,34 @@ button, input {
 }
 
 .chapter-item {
-  border: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+  border: 1px solid rgba(213,179,106,0.2);
   border-radius: 14px;
-  background: rgba(255,255,255,0.02);
-  padding: 0.9rem 1rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding: 0.95rem 1rem 0.9rem;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.chapter-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--gold2), var(--gold));
 }
 
 .chapter-item strong {
   display: block;
-  margin-bottom: 0.25rem;
+  margin: 0 0 0.25rem 0.8rem;
+  color: var(--champagne);
 }
 
 .chapter-item span {
+  display: block;
+  margin-left: 0.8rem;
   color: var(--muted);
   line-height: 1.5;
 }
