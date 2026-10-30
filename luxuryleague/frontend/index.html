@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Luxury League</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient"></div>
+  <header class="topbar">
+    <div class="brandmark">LL<span>✦</span></div>
+    <div><div class="eyebrow">THE ULTIMATE BRAND COLLECTION GAME</div><h1>LUXURY <em>LEAGUE</em></h1></div>
+    <div class="top-status" id="connection">● READY</div>
+  </header>
+
+  <main>
+    <section id="lobby" class="panel lobby-panel">
+      <div class="hero-copy">
+        <div class="eyebrow gold">FOUR PLAYERS · FIFTEEN TURNS EACH</div>
+        <h2>Collect. Match.<br><em>Claim the crown.</em></h2>
+        <p>Build your luxury collection, complete matching pairs and outscore your rivals.</p>
+      </div>
+      <div class="lobby-actions">
+        <label>Your display name<input id="playerName" maxlength="20" placeholder="e.g. Alex"></label>
+        <button class="primary" id="createBtn">Create private room</button>
+        <div class="or">OR JOIN WITH AN INVITE CODE</div>
+        <label>Room code<input id="roomCode" maxlength="6" placeholder="ABC123" class="code-input"></label>
+        <button class="secondary" id="joinBtn">Join room</button>
+        <p class="hint">A room needs exactly four players. The host starts the game once everyone has joined.</p>
+      </div>
+    </section>
+
+    <section id="room" class="hidden">
+      <div class="room-heading panel">
+        <div><div class="eyebrow gold">PRIVATE GAME ROOM</div><h2>Room <span id="roomCodeLabel" class="room-code">------</span></h2></div>
+        <button class="secondary small" id="copyCodeBtn">Copy invite code</button>
+      </div>
+      <div class="panel players-panel">
+        <div class="section-title">PLAYERS <span id="playerCount">0 / 4</span></div>
+        <div id="players" class="players-grid"></div>
+        <div id="hostControls" class="host-controls hidden">
+          <p class="hint">All four players are here. The host can deal the cards and begin.</p>
+          <button class="primary" id="startBtn">Start game</button>
+        </div>
+        <p id="waitingMessage" class="hint">Share your invite code and wait for three more players.</p>
+      </div>
+    </section>
+
+    <section id="game" class="hidden">
+      <div class="game-topline">
+        <div class="turn-pill" id="turnLabel">WAITING FOR GAME</div>
+        <div class="deck-indicator"><span class="deck-icon">▤</span> DRAW PILE <b id="deckCount">60</b></div>
+      </div>
+      <div class="scoreboard panel">
+        <div class="section-title">LIVE LEADERBOARD <span>PRIVATE HANDS · PUBLIC SCORES</span></div>
+        <div id="scoreboard" class="score-grid"></div>
+      </div>
+      <div class="table-area">
+        <div class="table-label">YOUR COLLECTION</div>
+        <div class="player-area panel">
+          <div class="you-row"><div><span class="eyebrow gold">YOUR HAND</span><h2 id="yourName">Player</h2></div><div class="turn-count"><b id="turnsTaken">0</b><span>/ 15 TURNS</span></div></div>
+          <div id="hand" class="hand-grid"></div>
+          <div id="emptyHand" class="empty-note hidden">Your hand is empty. Draw to begin your collection.</div>
+          <div class="action-row">
+            <button class="primary draw-button" id="drawBtn">Draw a card <span>＋</span></button>
+            <span class="hint" id="turnHint">Waiting for your turn…</span>
+          </div>
+        </div>
+      </div>
+      <div class="panel collection-panel">
+        <div class="section-title">COMPLETED MATCHES <span>+100 BONUS PER PAIR</span></div>
+        <div id="collections" class="collections-grid"><span class="hint">No pairs yet. Your first match will appear here.</span></div>
+      </div>
+      <div class="event-toast" id="eventToast"></div>
+    </section>
+
+    <section id="results" class="hidden panel results-panel">
+      <div class="eyebrow gold">THE FINAL RESULTS</div>
+      <div class="crown">♛</div>
+      <h2 id="winnerTitle">The winner is…</h2>
+      <p id="winnerSub"></p>
+      <div id="finalScores" class="final-scores"></div>
+      <button class="secondary" id="backToLobby">Back to room</button>
+    </section>
+  </main>
+  <footer>Luxury League · A private multiplayer party game · Game points are illustrative</footer>
+  <script src="app.js"></script>
+</body>
+</html>
